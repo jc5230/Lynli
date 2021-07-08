@@ -5,4 +5,5 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_login">Login</string>
+    <string name="imageview_avatar">Avatar Image</string>
 </resources>

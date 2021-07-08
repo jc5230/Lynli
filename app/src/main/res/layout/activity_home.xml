@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <include
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/card_item_brief_view"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
