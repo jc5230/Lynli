@@ -12,19 +12,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.bumptech.glide.Glide;
 import com.innojane.lynli.SelectableCardsAdapter.Item;
 
 public class HomeActivity extends AppCompatActivity{
+
+    private AvatarAdapter avatarAdapter;
+    private RecyclerView avatarRecyclerView;
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        avatarRecyclerView = findViewById(R.id.recyclerview_avatar);
+
+        List<String> urls = new ArrayList<>();
+        urls.add("https://raw.githubusercontent.com/jc5230/Lynli/main/app/sampledata/sampleavatar/avatar_1.png");
+        urls.add("https://raw.githubusercontent.com/jc5230/Lynli/main/app/sampledata/sampleavatar/avatar_2.png");
+
+        avatarAdapter = new AvatarAdapter(HomeActivity.this, urls);
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        avatarRecyclerView.setLayoutManager(layoutManager);
+        avatarRecyclerView.setAdapter(avatarAdapter);
+
     }
+
 }
 /*
 public class HomeActivity extends AppCompatActivity implements ActionMode.Callback {
