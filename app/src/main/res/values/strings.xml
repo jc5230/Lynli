@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Lynli</string>
     <string name="app_logo">Lynli Logo</string>
+    <string name="activity_trans_logo">Activity Transition for Logo</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="button_login">Login</string>
 </resources>
