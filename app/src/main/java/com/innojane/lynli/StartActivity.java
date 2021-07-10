@@ -18,7 +18,7 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // get the common element for the transition in this activity
+        // get the common element for the transition in this activity - from StartActivity to LoginActivity
         View logoImageView = findViewById(R.id.app_logo);
 
         /* New Handler to start the Menu-Activity
