@@ -103,18 +103,20 @@ public class LoginActivity extends AppCompatActivity {
             // login frame - slide down & fade out
             frameAnimation(loginFrame);
 
+            // for making views invisible
+            logoImageView.setVisibility(View.GONE);
+            loginFrame.setVisibility(View.GONE);
+
+        }, loginDelayTime);
+
+        handler.postDelayed(() -> {
             // start HomeActivity
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
 
             // fade in HomeActivity
             overridePendingTransition(R.anim.fade_in, R.anim.stay);
-
-            // for making views invisible
-            logoImageView.setVisibility(View.GONE);
-            loginFrame.setVisibility(View.GONE);
-
-        }, loginDelayTime);
+        }, loginDelayTime + 500);
 
         handler.postDelayed(() -> {
             // finish LoginActivity
@@ -129,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         Animation aniFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
         AnimationSet animationSet = new AnimationSet(true);
         animationSet.setInterpolator(new OvershootInterpolator());
-        animationSet.setDuration(1000);
+        animationSet.setDuration(700);
         animationSet.addAnimation(aniSlideUp);
         animationSet.addAnimation(aniFadeOut);
         logoImageView.startAnimation(animationSet);
@@ -140,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         Animation aniFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
         AnimationSet animationSet = new AnimationSet(true);
         animationSet.setInterpolator(new OvershootInterpolator());
-        animationSet.setDuration(1000);
+        animationSet.setDuration(700);
         animationSet.addAnimation(aniSlideDown);
         animationSet.addAnimation(aniFadeOut);
         loginFrame.startAnimation(animationSet);

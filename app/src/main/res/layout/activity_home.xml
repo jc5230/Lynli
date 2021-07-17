@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_home"
     tools:context=".HomeActivity">
 
     <ScrollView
@@ -16,13 +17,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <include
-                layout="@layout/card_item_brief_view"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/brief_view"/>
+                tools:listitem="@layout/card_item_brief_view" />
 
         </LinearLayout>
+
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

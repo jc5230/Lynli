@@ -12,16 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder> {
 
-    private Context context;
     private List<String> avatarURLs;
 
-    public AvatarAdapter(Context context, List<String> avatarURLs) {
-        this.context = context;
+    public AvatarAdapter() {
+        this.avatarURLs = new ArrayList<>();
+    }
+
+    public AvatarAdapter(List<String> avatarURLs) {
         this.avatarURLs = avatarURLs;
+    }
+
+    public void addAvatar(String avatarURL) {
+        this.avatarURLs.add(avatarURL);
     }
 
     public String getAvatarURL(int position) {
@@ -29,7 +36,7 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private final ImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
@@ -42,7 +49,7 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder
             return imageView;
         }
 
-        public void bindImageView(Context context, String avatarURL) {
+        public void bindImageView(String avatarURL) {
             Glide.with(imageView.getContext())
                     .load(avatarURL)
                     .placeholder(R.drawable.avatar)
@@ -62,7 +69,7 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.bindImageView(context, getAvatarURL(position));
+        viewHolder.bindImageView(getAvatarURL(position));
     }
 
     @Override
