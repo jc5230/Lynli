@@ -3,6 +3,7 @@ package com.innojane.lynli;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
@@ -62,8 +64,11 @@ public class SelectableCardsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         private String title;
         private List<String> avatarURLs;
 
-        Item() {
+        // Expanded Information
+        private String bgURL;
+        private String address;
 
+        Item() {
         }
 
         Item(String title) {
@@ -75,16 +80,43 @@ public class SelectableCardsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             this.avatarURLs = avatarURLs;
         }
 
+        void setBgURL(String bgURL) {
+            this.bgURL = bgURL;
+        }
+
+        void setAddress(String address) {
+            this.address = address;
+        }
+
         void addAvatarURL(String avatarURL) {
             avatarURLs.add(avatarURL);
+        }
+
+        boolean hasBg() {
+            return bgURL.isEmpty() ? false : true;
+        }
+
+        boolean hasAddress() {
+            return address.isEmpty() ? false : true;
+        }
+
+        String getBgURL() {
+            return bgURL;
         }
 
         String getTitle() {
             return title;
         }
+
+        String getAddress() {
+            return address;
+        }
+
         List<String> getAvatarURLs() {
             return avatarURLs;
         }
+
+
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -93,6 +125,10 @@ public class SelectableCardsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         private final TextView titleView;
         private final RecyclerView avatarRecyclerView;
 
+        // Expanded
+        private final ImageView bgView;
+        private final TextView addressView;
+
         private AvatarAdapter avatarAdapter;
 
         ItemViewHolder(View itemView) {
@@ -100,9 +136,21 @@ public class SelectableCardsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             briefView = itemView.findViewById(R.id.card_brief_view);
             titleView = briefView.findViewById(R.id.card_title_text);
             avatarRecyclerView = briefView.findViewById(R.id.recyclerview_avatar);
+
+            // Expanded
+            bgView = briefView.findViewById(R.id.card_bgimage);
+            addressView = briefView.findViewById(R.id.card_address_text);
         }
 
         private void bindItem(Item item) {
+            if (item.hasBg()) {
+                bgView.setVisibility(View.VISIBLE);
+                Glide.with(bgView.getContext())
+                        .load(item.getBgURL())
+                        .placeholder(R.drawable.background)
+                        .error(R.drawable.background)
+                        .into(bgView);
+            }
             titleView.setText(item.title);
             // Create a layout manager to assign a layout to the RecyclerView.
             LinearLayoutManager layoutManager = new LinearLayoutManager(
