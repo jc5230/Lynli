@@ -70,6 +70,7 @@ public class HomeActivity extends AppCompatActivity{
                 Log.i("HomeActivity", String.valueOf(randomAvatar));
             }
             Item item = new Item(title, urls);
+            item.setAddress(names[i] + "'s Address");
             items.add(item);
         }
 

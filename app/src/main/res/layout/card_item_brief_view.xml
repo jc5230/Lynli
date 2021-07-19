@@ -6,6 +6,7 @@
     android:id="@+id/card_brief_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="true"
     app:cardUseCompatPadding="true"
     card_view:cardCornerRadius="5dp">
 
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="12dp">
+        android:layout_marginVertical="12dp"
+        android:animateLayoutChanges="true">
 
         <ImageView
             android:id="@+id/card_bgimage"
@@ -27,6 +29,8 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:visibility="gone"/>
 
+
+
         <TextView
             android:id="@+id/card_title_text"
             android:layout_width="wrap_content"
@@ -38,6 +42,17 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Chen's Home"/>
 
+        <ImageButton
+            android:id="@+id/card_button_right"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:scaleType="fitCenter"
+            android:background="?android:selectableItemBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/card_address_text"
+            app:layout_constraintTop_toBottomOf="@id/card_bgimage"
+            app:layout_constraintEnd_toEndOf="parent"
+            card_view:srcCompat="@drawable/arrow_right" />
 
         <TextView
             android:id="@+id/card_address_text"
